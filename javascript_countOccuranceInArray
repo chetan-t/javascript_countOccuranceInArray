@@ -1,0 +1,143 @@
+/*****************Method 1*********************/
+let arr = [1,2,3,2,3,4];
+let result = {};
+
+for(let i=0;i<arr.length;i++){
+    if(arr[i] in result){
+     
+        result[arr[i]] = result[arr[i]] + 1;
+        // console.log(result);
+       
+    }else{
+        result[arr[i]] = 1;
+        // console.log(result);
+    }
+}
+console.log(result); // { '1': 1, '2': 2, '3': 2, '4': 1 }
+
+/***************************end***************************/
+
+/**************Method 2****************/
+function countRepeatedElements(arr) {
+    let counts = {};
+
+    for (let i = 0; i < arr.length; i++) {
+      
+      
+        let num = arr[i];
+        console.log(num);
+        
+        if (counts[num]) {
+            counts[num]++;
+            
+        } else {
+            counts[num] = 1;
+        }
+       
+    }
+
+    return counts;
+}
+
+// Example usage:
+let array = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4];
+let result = countRepeatedElements(array);
+// console.log(result); // Output: { '1': 1, '2': 2, '3': 3, '4': 4 }
+/******************End************************/
+
+
+
+Explanation with code
+
+
+How Keys and Values Work Here:
+Initialization:
+
+javascript
+Copy code
+let arr = [1, 2, 3, 2, 3, 4];
+let result = {};
+arr is an array containing numbers.
+result is an empty object {} which will store the count of each element from arr.
+Iteration with forEach:
+
+javascript
+Copy code
+arr.forEach(num => {
+forEach iterates over each element in the arr array.
+num represents the current element in the iteration.
+Checking and Updating the Count:
+
+javascript
+Copy code
+if (num in result) {
+    result[num] = result[num] + 1;
+} else {
+    result[num] = 1;
+    console.log(result);
+}
+if (num in result) { ... } checks if num is already a key in the result object.
+num is treated as a key in the result object.
+result[num] accesses the value associated with the key num.
+Key Exists (Incrementing the Count):
+
+javascript
+Copy code
+if (num in result) {
+    result[num] = result[num] + 1;
+}
+If num is already a key in result, result[num] fetches the current count.
+result[num] = result[num] + 1; increments this count by 1.
+For example, if num is 2 and result is {2: 1}, result[2] = result[2] + 1 updates result to {2: 2}.
+Key Does Not Exist (Initializing the Count):
+
+javascript
+Copy code
+} else {
+    result[num] = 1;
+    console.log(result);
+}
+If num is not a key in result, result[num] = 1; creates a new key-value pair where num is the key and 1 is the value.
+For example, if num is 3 and result is {1: 1, 2: 2}, result[3] = 1 updates result to {1: 1, 2: 2, 3: 1}.
+console.log(result); prints the result object each time a new key is added.
+Execution Steps with Example Array:
+First Iteration (num = 1):
+
+1 is not in result, so result[1] = 1.
+result becomes {1: 1}.
+console.log(result); prints {1: 1}.
+Second Iteration (num = 2):
+
+2 is not in result, so result[2] = 1.
+result becomes {1: 1, 2: 1}.
+console.log(result); prints {1: 1, 2: 1}.
+Third Iteration (num = 3):
+
+3 is not in result, so result[3] = 1.
+result becomes {1: 1, 2: 1, 3: 1}.
+console.log(result); prints {1: 1, 2: 1, 3: 1}.
+Fourth Iteration (num = 2):
+
+2 is in result, so result[2] = result[2] + 1.
+result becomes {1: 1, 2: 2, 3: 1}.
+Fifth Iteration (num = 3):
+
+3 is in result, so result[3] = result[3] + 1.
+result becomes {1: 1, 2: 2, 3: 2}.
+Sixth Iteration (num = 4):
+
+4 is not in result, so result[4] = 1.
+result becomes {1: 1, 2: 2, 3: 2, 4: 1}.
+console.log(result); prints {1: 1, 2: 2, 3: 2, 4: 1}.
+Final Output
+After all iterations, the result object contains the frequency of each element in the array:
+
+javascript
+Copy code
+{1: 1, 2: 2, 3: 2, 4: 1}
+This output means:
+
+The element 1 appears once.
+The element 2 appears twice.
+The element 3 appears twice.
+The element 4 appears once.
